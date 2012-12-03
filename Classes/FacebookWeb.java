@@ -11,59 +11,25 @@
  public class FacebookWeb{
 
  	// instance variables
- 	private String name;
- 	private String userID;
- 	private Hashmap<String, String> criteria;
- 	private FacebookWeb fbWeb;
- 	private MatchList matches; 
+ 	private User seed;
+ 	private Hashmap<Integer, LinkedList<Connection>> myWeb; 
 
- 	public User(String name, String userID){
- 		this.name = name;
- 		this.userID = userID;
- 		this.criteria = new Hashmap<String, String>();
- 		this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
- 		this.matches = new MatchList();
+ 	public FacebookWeb(User seed){
+ 		this.seed = seed;
+ 		this.criteria = new Hashmap<Integer, LinkedList<Connection>>();
  	}
 
  	// getters and setters
- 	public String getName(){
- 		return name;
+ 	public User getSeed(){
+ 		return seed;
  	}
 
- 	public void setName(String newName){
- 		name = newName;
+ 	public Hashmap<Integer, LinkedList<Connection>> getWeb(){
+ 		return myWeb;
  	}
 
- 	public String getUID(){
- 		return userID;
- 	}
-
- 	public void setUID(String newUID){
- 		userID = newUID;
- 	}
-
- 	public Hashmap<String, String> getCriteria(){
- 		return criteria;
- 	}
-
- 	public void setCriteria(Hashmap<String, String> inputCriteria){
- 		criteria = inputCriteria;
- 	}
-
- 	public FacebookWeb getFBWeb(){
- 		return fbWeb;
- 	}
-
- 	public void setFBWeb(FacebookWeb newFBWeb){
- 		fbWeb = newFBWeb;
- 	}
-
- 	public MatchList getMatches(){
- 		return matches;
- 	}
-
- 	public void setMatches(MatchList newMatchList){
- 		matches = newMatchList;
+ 	public void setWeb(Hashmap<Integer, LinkedList<Connection>> newWeb){
+ 		myWeb = newWeb;
  	}
 
  }

@@ -32,16 +32,8 @@
  		return name;
  	}
 
- 	public void setName(String newName){
- 		name = newName;
- 	}
-
  	public String getUID(){
  		return userID;
- 	}
-
- 	public void setUID(String newUID){
- 		userID = newUID;
  	}
 
  	public URL getProfPicURL(){
@@ -75,7 +67,7 @@
  	public String pathToUser_pop(){
  		return pathToUser.pop();
  	}
- 	
+
  	public void pathToUser_push(String toAdd){
  		pathToUser.push(toAdd);
  	}

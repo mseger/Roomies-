@@ -30,16 +30,8 @@
  		return name;
  	}
 
- 	public void setName(String newName){
- 		name = newName;
- 	}
-
  	public String getUID(){
  		return userID;
- 	}
-
- 	public void setUID(String newUID){
- 		userID = newUID;
  	}
 
  	public Hashmap<String, String> getCriteria(){
