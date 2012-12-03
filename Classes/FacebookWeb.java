@@ -32,4 +32,10 @@
  		myWeb = newWeb;
  	}
 
+ 	public Hashmap<Integer, LinkedList<Connection>> populateWeb(int numLevels){
+ 		// populates the seed's FacebookWeb, by pulling/ crawling out a specified 
+ 		// number of "degrees" (represented by numLevels) outward from the seed
+ 		return new Hashmap<Integer, LinkedList<Connection>>(); 
+ 	}
+
  }
