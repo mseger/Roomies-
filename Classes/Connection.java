@@ -13,16 +13,16 @@
  	// instance variables
  	private String name;
  	private String userID;
- 	private URL profPicURL;
- 	private Hashmap<String, String> criteria; 
+ 	private String profPicURL;
+ 	private HashMap<String, String> criteria; 
  	private FacebookWeb fbWeb;
  	private Stack<String> pathToUser;
 
  	public Connection(String name, String userID){
  		this.name = name;
  		this.userID = userID;
- 		this.profPicURL = new URL("https://graph.facebook.com/" + name + "/picture"); 		
- 		this.criteria = new Hashmap<String, String>();
+ 		this.profPicURL = "https://graph.facebook.com/" + name + "/picture"; 		
+ 		this.criteria = new HashMap<String, String>();
  		this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
  		this.pathToUser = new Stack<String>();
  	}
@@ -36,19 +36,19 @@
  		return userID;
  	}
 
- 	public URL getProfPicURL(){
+ 	public String getProfPicURL(){
  		return profPicURL;
  	}
 
- 	public void setProfPicURL(URL newProfPicURL){
+ 	public void setProfPicURL(String newProfPicURL){
  		profPicURL = newProfPicURL;
  	}
 
- 	public Hashmap<String, String> getCriteria(){
+ 	public HashMap<String, String> getCriteria(){
  		return criteria;
  	}
 
- 	public void setCriteria(Hashmap<String, String> newCriteria){
+ 	public void setCriteria(HashMap<String, String> newCriteria){
  		criteria = newCriteria;
  	}
 

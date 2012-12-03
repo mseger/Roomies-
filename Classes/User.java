@@ -13,14 +13,14 @@
  	// instance variables
  	private String name;
  	private String userID;
- 	private Hashmap<String, String> criteria;
+ 	private HashMap<String, String> criteria;
  	private FacebookWeb fbWeb;
  	private MatchList matches; 
 
  	public User(String name, String userID){
  		this.name = name;
  		this.userID = userID;
- 		this.criteria = new Hashmap<String, String>();
+ 		this.criteria = new HashMap<String, String>();
  		this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
  		this.matches = new MatchList();
  	}
@@ -34,11 +34,11 @@
  		return userID;
  	}
 
- 	public Hashmap<String, String> getCriteria(){
+ 	public HashMap<String, String> getCriteria(){
  		return criteria;
  	}
 
- 	public void setCriteria(Hashmap<String, String> inputCriteria){
+ 	public void setCriteria(HashMap<String, String> inputCriteria){
  		criteria = inputCriteria;
  	}
 

@@ -11,31 +11,25 @@
  public class FacebookWeb{
 
  	// instance variables
- 	private User seed;
- 	private Hashmap<Integer, LinkedList<Connection>> myWeb; 
+ 	private HashMap<Integer, LinkedList<Connection>> myWeb; 
 
- 	public FacebookWeb(User seed){
- 		this.seed = seed;
- 		this.criteria = new Hashmap<Integer, LinkedList<Connection>>();
+ 	public FacebookWeb(){
+ 		this.myWeb = new HashMap<Integer, LinkedList<Connection>>();
  	}
 
  	// getters and setters
- 	public User getSeed(){
- 		return seed;
- 	}
-
- 	public Hashmap<Integer, LinkedList<Connection>> getWeb(){
+ 	public HashMap<Integer, LinkedList<Connection>> getWeb(){
  		return myWeb;
  	}
 
- 	public void setWeb(Hashmap<Integer, LinkedList<Connection>> newWeb){
+ 	public void setWeb(HashMap<Integer, LinkedList<Connection>> newWeb){
  		myWeb = newWeb;
  	}
 
- 	public Hashmap<Integer, LinkedList<Connection>> populateWeb(int numLevels){
+ 	public HashMap<Integer, LinkedList<Connection>> populateWeb(int numLevels){
  		// populates the seed's FacebookWeb, by pulling/ crawling out a specified 
  		// number of "degrees" (represented by numLevels) outward from the seed
- 		return new Hashmap<Integer, LinkedList<Connection>>(); 
+ 		return new HashMap<Integer, LinkedList<Connection>>(); 
  	}
 
  }
