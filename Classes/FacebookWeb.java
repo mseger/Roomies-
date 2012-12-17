@@ -6,9 +6,9 @@
 
  import java.util.*;
  import java.io.*;
- import java.net.*; 
+ import java.net.*;
 
- public class FacebookWeb{
+public class FacebookWeb{
 
  	// instance variables
  	private HashMap<Integer, LinkedList<Connection>> myWeb; 
@@ -18,22 +18,44 @@
  																	 // to the list of Connections at this level
  	}
 
- 	// getters and setters
- 	public HashMap<Integer, LinkedList<Connection>> getWeb(){
- 		return myWeb;
+
+    public HashMap<Integer, LinkedList<Connection>> populateWeb(){
+        // populates the FB Web by filling immediate and extended webs
+        fillImmediateWeb();
+        fillExtendedWeb();
+        return myWeb;
+    }
+
+ 	public void fillImmediateWeb(){
+         // fills the "Oth" level of your FacebookWeb, ie. a LinkedList of all your immediate FB friends
+
+         // parse the JSON objects in my immediate friends list into a list of Connections
+         FBJSONOutputParser fbParser = new FBJSONOutputParser("outputFriends.txt");
+         LinkedList<Connection> myImmediateFriends = fbParser.parseFBfriendList();
+
+         // set this list of Connections to the "O" level in the HashMap
+         myWeb.put(0, myImmediateFriends);
  	}
 
- 	public void setWeb(HashMap<Integer, LinkedList<Connection>> newWeb){
- 		myWeb = newWeb;
- 	}
 
- 	public HashMap<Integer, LinkedList<Connection>> populateWeb(User seed, int numLevels){
- 		// populates the seed's FacebookWeb, by pulling/ crawling out a specified 
- 		// number of "degrees" (represented by numLevels) outward from the seed
- 		return new HashMap<Integer, LinkedList<Connection>>(); 
- 	}
+    public void fillExtendedWeb(){
+        // gets two of my FB friends Peter and Filip's friend lists, any connections that we don't have in common
+        // are divided up between the first and second tiers of my FB web (for demo purposes)
 
- 	public LinkedList<Connection> runFriendListScrape(String friendListLocation, String writeToLocation) throws Exception{
+        // Peter's friends, going in at index 1 in my FB WEB
+        FBJSONOutputParser friend1Parser = new FBJSONOutputParser("PeterFriends.txt");
+        LinkedList<Connection> peterFriends = friend1Parser.parseFBfriendList();
+        myWeb.put(1, peterFriends);
+
+        // Filip's friends, going in at index 2 in my FB WEB
+        FBJSONOutputParser friend2Parser = new FBJSONOutputParser("FilipFriends.txt");
+        LinkedList<Connection> filipFriends = friend2Parser.parseFBfriendList();
+        myWeb.put(2, filipFriends);
+    }
+
+    // this is the original method I used to grab my friends list & store in a text file for later use
+    // this is now a deprecated method because my FB Auth token is only temporary and unique to each user
+ 	public void runFriendListScrape(String friendListLocation, String writeToLocation) throws Exception{
  		// goes to Facebook URL, scrapes the JSON associated with all friend objects for a given user
  		// and converts them to Connection objects
  		try{
@@ -56,38 +78,26 @@
 	 		in.close();
 	 		bw.close();
 
-	 		return new LinkedList<Connection>();
 	 		}catch(IOException e){
 	 			e.printStackTrace();
 	 		}
-	 		return new LinkedList<Connection>();
 	 	}
 
-	public Connection parseRawFriendInput(String line){
-		// parses each line of the raw JSON output from scraping Facebook and creates
-		// a new Connection for each raw friend, populates relevant fields
+    // taking the scraped info from the output text file, analyzing, and inputting into my Facebook web
 
-		// intend to use a downloaded JSON parsing lib here, so as not to reinvent the wheel 
-		String[] elements = new String[5];
-		for(String element : line.split("[\\s,;]+")){
-			System.out.println(element);
-		}
-
-		return new Connection("", "");
-	}
 
  	public static void main(String[] args){
  		FacebookWeb fbWeb = new FacebookWeb();
- 		fbWeb.populateWeb(new User("Margaret-Ann Seger", "margaretann.seger"), 1);
 
- 		// get temp data for experimental purposes
- 		String tempFriendsAccessPt = "https://graph.facebook.com/me/friends?access_token=AAAAAAITEghMBAO2mvbNeqDIRV1krzt0WDMfOhZBsuQXXapgjndobfPIfqeQ4RZCnOTZCepZAx9auLEkFcKe9F00nJmVDZAncvVAOGXq6wHM0a919rSmuL";
- 		String writeToLocation = "/home/mseger/Documents/DataStructures/FinalProject/Classes/outputFriends.txt";
+        // get temp data for experimental purposes --> I chose to grab my data, write to a text file, re-use for demo (as token expires)
+        // I ran this for myself and two FB friends
+        /*fbWeb.populateWeb(new User("Filip Kaliszan", "filip.kaliszan"), 1);
+ 		String tempFriendsAccessPt = "https://graph.facebook.com/213843/friends?access_token=AAAAAAITEghMBAPDPNVjOXzZBemqDiIFeGbXaUCwhIFgKPk1a1myx2LGpVw0bJ4F7F8zZB6h0nuJNJSFgHzWxpo6k3VzCXJrN0DdEZBMIXsDcKYlGcaC";
+ 		String writeToLocation = "FilipFriends.txt";
  		try{
  			fbWeb.runFriendListScrape(tempFriendsAccessPt, writeToLocation);
  		}catch(Exception ex){
  			System.out.println("Failure due to: " + ex);
- 		}
- 		//parseRawFriendInput("{"name":"Filip Kaliszan","id":"213843"}");
+ 		} */
  	}
  }

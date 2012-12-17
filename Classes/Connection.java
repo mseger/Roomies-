@@ -21,7 +21,7 @@
  	public Connection(String name, String userID){
  		this.name = name; // user's name (for display purposes)
  		this.userID = userID; // user's Facebook ID, for searching and storage purposes
- 		this.profPicURL = "https://graph.facebook.com/" + name + "/picture"; // URL for public profpic icon	
+ 		this.profPicURL = "https://graph.facebook.com/" + userID + "/picture"; // URL for public profpic icon
  		this.criteria = new HashMap<String, String>(); // this Connection's criteria, for matching purposes
  		this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
  		this.pathToUser = new Stack<String>(); // path from the original user to this connection
