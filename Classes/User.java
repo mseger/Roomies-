@@ -18,11 +18,11 @@
  	private MatchList matches; 
 
  	public User(String name, String userID){
- 		this.name = name;
- 		this.userID = userID;
- 		this.criteria = new HashMap<String, String>();
+ 		this.name = name; // user's name for display purposes
+ 		this.userID = userID; // for Facebook search + storage purposes
+ 		this.criteria = new HashMap<String, String>(); // mapping from the criteria questions to user-inputted responses
  		this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
- 		this.matches = new MatchList();
+ 		this.matches = new MatchList(this, fbWeb); // list of best matches for this User, given their FBWeb
  	}
 
  	// getters and setters
