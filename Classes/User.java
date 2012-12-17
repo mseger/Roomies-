@@ -13,15 +13,17 @@
  	// instance variables
  	private String name;
  	private String userID;
- 	private HashMap<String, String> criteria;
+ 	private HashMap<String, Integer> criteria;
+    private int criteriaScore;
  	private FacebookWeb fbWeb;
  	private MatchList matches; 
 
  	public User(String name, String userID){
  		this.name = name; // user's name for display purposes
  		this.userID = userID; // for Facebook search + storage purposes
- 		this.criteria = new HashMap<String, String>(); // mapping from the criteria questions to user-inputted responses
- 		this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
+ 		this.criteria = populateCriteria(); // mapping from the criteria questions to user-inputted responses
+        this.criteriaScore = calculateCriteriaScore();
+        this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
  		this.matches = new MatchList(this, fbWeb); // list of best matches for this User, given their FBWeb
  	}
 
@@ -34,11 +36,24 @@
  		return userID;
  	}
 
- 	public HashMap<String, String> getCriteria(){
+    public HashMap<String, Integer> populateCriteria(){
+        Criteria criteria  = new Criteria();
+        return criteria.getCriteria();
+    }
+
+    public int calculateCriteriaScore(){
+        return (criteria.get("Clean") + criteria.get(1) + criteria.get("Bedtime") + criteria.get("Party") + criteria.get("Company"))/4;
+    }
+
+    public int getCriteriaScore(){
+        return criteriaScore;
+    }
+
+ 	public HashMap<String, Integer> getCriteria(){
  		return criteria;
  	}
 
- 	public void setCriteria(HashMap<String, String> inputCriteria){
+ 	public void setCriteria(HashMap<String, Integer> inputCriteria){
  		criteria = inputCriteria;
  	}
 

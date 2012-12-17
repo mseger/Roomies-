@@ -11,6 +11,7 @@ import java.util.LinkedList;
  * Time: 2:43 AM
  * To change this template use File | Settings | File Templates.
  */
+
 public class Criteria extends JFrame{
 
         private static final int WIDTH = 400;
@@ -20,12 +21,12 @@ public class Criteria extends JFrame{
         private JComboBox cleanChoice, bedtimeChoice, partyChoice, companyChoice;
         private JButton calculateB, exitB;
 
-        HashMap<String, String> QAResponses; // represents the mapping from preference questions to user-inputted responses
+        HashMap<String, Integer> QAResponses; // represents the mapping from preference questions to user-inputted responses
         boolean filledOut;  // represents whether there are responses to the questions to return from the GUI yet
 
         public Criteria()
         {
-            QAResponses = new HashMap<String, String>();
+            QAResponses = new HashMap<String, Integer>();
             filledOut = false;
             JPanel userInfo = grabUserInfo();
 
@@ -103,13 +104,14 @@ public class Criteria extends JFrame{
 
         private class CalculateButtonHandler implements ActionListener {
             public void actionPerformed(ActionEvent e){
-                String  cleanlinessPref, bedtimePref, partyPref, company;
+                Integer  cleanlinessPref, bedtimePref, partyPref, company;  // the integer represents the index
+                // selected of the different given options for each question
 
                 // grab the input from the GUI
-                cleanlinessPref = cleanChoice.getSelectedItem().toString();
-                bedtimePref = bedtimeChoice.getSelectedItem().toString();
-                partyPref = partyChoice.getSelectedItem().toString();
-                company = companyChoice.getSelectedItem().toString();
+                cleanlinessPref = new Integer(cleanChoice.getSelectedIndex());
+                bedtimePref = new Integer(bedtimeChoice.getSelectedIndex());
+                partyPref = new Integer(partyChoice.getSelectedIndex());
+                company = new Integer(companyChoice.getSelectedIndex());
 
                 // fill QAResponses HashMap
                 QAResponses.put("Clean", cleanlinessPref);
@@ -121,7 +123,7 @@ public class Criteria extends JFrame{
             }
         }
 
-        public HashMap<String, String> getCriteria(){
+        public HashMap<String, Integer> getCriteria(){
             if(filledOut){
                 return QAResponses;
             }else{

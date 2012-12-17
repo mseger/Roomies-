@@ -4,6 +4,7 @@
  CS230 Final Project
  */
 
+ import java.security.PrivateKey;
  import java.util.*;
 
  public class Connection{
@@ -12,15 +13,18 @@
  	private String name;
  	private String userID;
  	private String profPicURL;
- 	private HashMap<String, String> criteria; 
- 	private FacebookWeb fbWeb;
+ 	private HashMap<String, Integer> criteria;
+    private int criteriaScore;
+ 	private LinkedList<Connection> immediateConnections;
  	private Stack<String> pathToUser;
 
  	public Connection(String name, String userID){
  		this.name = name; // user's name (for display purposes)
  		this.userID = userID; // user's Facebook ID, for searching and storage purposes
  		this.profPicURL = "https://graph.facebook.com/" + userID + "/picture"; // URL for public profpic icon
- 		this.criteria = new HashMap<String, String>(); // this Connection's criteria, for matching purposes
+ 		this.criteria = new HashMap<String, Integer>(); // this Connection's criteria, for matching purposes
+        this.criteriaScore = generateNewRandomCriteriaScore();
+        this.immediateConnections = FacebookWeb.fillInputNameWeb(name);
  		this.pathToUser = new Stack<String>(); // path from the original user to this connection
  	}
 
@@ -41,13 +45,34 @@
  		profPicURL = newProfPicURL;
  	}
 
- 	public HashMap<String, String> getCriteria(){
+ 	public HashMap<String, Integer> getCriteria(){
  		return criteria;
  	}
 
- 	public void setCriteria(HashMap<String, String> newCriteria){
+ 	public void setCriteria(HashMap<String, Integer> newCriteria){
  		criteria = newCriteria;
  	}
+
+    public int generateNewRandomCriteriaScore(){
+        // generates a new, random set of "responses" to the criteria questions, then combines them
+        // into one coherent criteria score
+        Random r = new Random();
+        int cleanScore = r.nextInt(3);
+        int bedScore = r.nextInt(4);
+        int partyScore = r.nextInt(2);
+        int companyScore = r.nextInt(5);
+
+        int avg = (cleanScore + bedScore + partyScore + companyScore)/4;
+        return avg;
+    }
+
+     public int getCriteriaScore(){
+         return criteriaScore;
+     }
+
+     public LinkedList<Connection> getImmediateConnections(){
+         return immediateConnections;
+     }
 
  	public Stack<String> getPathToUser(){
  		return pathToUser;

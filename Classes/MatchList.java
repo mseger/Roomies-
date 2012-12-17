@@ -43,7 +43,20 @@
  	public boolean goodMatch(User seed, Connection inQuestion){
  		// helper function to populateMatchList to determine if a given Connection should
  		// or should not be added to the seed User's matchList
+        if((seed.getCriteriaScore()- inQuestion.getCriteriaScore())>2){
+            // more than two whole points apart on the critical comparative metrics
+            // probably wouldn't be the happiest roommates
+            return false;
+        }else{
+            // see how many mutual friends they have
+            int mutualFriendScore = mutualFriendCheck(User seed, Connection inQuestion);
+        }
  		return true;
  	}
+
+    public int mutualFriendCheck(User seed, Connection inQuestion){
+        LinkedList<Connection> seedImmediates =   fbWeb.fillImmediateWeb();
+        LinkedList<Connection> inQuestionImmediates = FacebookWeb.fillInputNameWeb(inQuestion.getName());
+    }
 
  }

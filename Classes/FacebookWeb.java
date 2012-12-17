@@ -14,8 +14,7 @@ public class FacebookWeb{
  	private HashMap<Integer, LinkedList<Connection>> myWeb; 
 
  	public FacebookWeb(){
- 		this.myWeb = new HashMap<Integer, LinkedList<Connection>>(); // hashmap from the "level" of connection eg. "level 0" 
- 																	 // to the list of Connections at this level
+ 		this.myWeb = new HashMap<Integer, LinkedList<Connection>>(); // hashmap from the "level" of connection eg. "level 0" 															 // to the list of Connections at this level
  	}
 
 
@@ -26,7 +25,7 @@ public class FacebookWeb{
         return myWeb;
     }
 
- 	public void fillImmediateWeb(){
+ 	public LinkedList<Connection> fillImmediateWeb(){
          // fills the "Oth" level of your FacebookWeb, ie. a LinkedList of all your immediate FB friends
 
          // parse the JSON objects in my immediate friends list into a list of Connections
@@ -35,6 +34,7 @@ public class FacebookWeb{
 
          // set this list of Connections to the "O" level in the HashMap
          myWeb.put(0, myImmediateFriends);
+         return myImmediateFriends;
  	}
 
 
@@ -51,6 +51,20 @@ public class FacebookWeb{
         FBJSONOutputParser friend2Parser = new FBJSONOutputParser("FilipFriends.txt");
         LinkedList<Connection> filipFriends = friend2Parser.parseFBfriendList();
         myWeb.put(2, filipFriends);
+    }
+
+    public static LinkedList<Connection> fillInputNameWeb(String name){
+        if(name.equals("Peter")){
+            // Peter's friends, going in at index 1 in my FB WEB
+            FBJSONOutputParser peterParser = new FBJSONOutputParser("PeterFriends.txt");
+            LinkedList<Connection> peterFriends = peterParser.parseFBfriendList();
+            return peterFriends;
+        }else{
+            // Filip's friends, going in at index 2 in my FB WEB
+            FBJSONOutputParser filipParser = new FBJSONOutputParser("FilipFriends.txt");
+            LinkedList<Connection> filipFriends = filipParser.parseFBfriendList();
+            return filipFriends;
+        }
     }
 
     // this is the original method I used to grab my friends list & store in a text file for later use
