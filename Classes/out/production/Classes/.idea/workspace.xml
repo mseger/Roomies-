@@ -61,7 +61,7 @@
       <file leaf-file-name="Connection.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="54" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
+            <state line="25" column="44" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,10 +69,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FacebookWeb.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MatchList.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MatchList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="14" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FacebookWeb.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FacebookWeb.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="35" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.85658914">
+            <state line="28" column="0" selection-start="742" selection-end="742" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,10 +92,21 @@
       <file leaf-file-name="FBJSONOutputParser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FBJSONOutputParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="7" selection-start="2002" selection-end="2002" vertical-scroll-proportion="0.0">
+            <state line="19" column="26" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1152#1164#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Criteria.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Criteria.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="120" column="48" selection-start="4709" selection-end="4709" vertical-scroll-proportion="0.73161036">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,8 +125,9 @@
         <option value="$PROJECT_DIR$/testJSON.txt" />
         <option value="$PROJECT_DIR$/JsonSimpleExample.java" />
         <option value="$PROJECT_DIR$/FBJSONOutputParser.java" />
-        <option value="$PROJECT_DIR$/Connection.java" />
         <option value="$PROJECT_DIR$/FacebookWeb.java" />
+        <option value="$PROJECT_DIR$/Connection.java" />
+        <option value="$PROJECT_DIR$/Criteria.java" />
       </list>
     </option>
   </component>
@@ -190,7 +211,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.FBWeb">
+  <component name="RunManager" selected="Application.Criteria">
     <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
       <module name="" />
       <setting name="path" value="" />
@@ -335,8 +356,8 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="false" name="FBWeb" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="FacebookWeb" />
+    <configuration default="false" name="Criteria" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Criteria" />
       <option name="VM_PARAMETERS" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -352,7 +373,7 @@
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Application.FBWeb" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Criteria" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -360,6 +381,11 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -479,15 +505,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="54" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/outputFriends.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -509,9 +526,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="44" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MatchList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="14" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FacebookWeb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="742" selection-end="742" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FBJSONOutputParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="7" selection-start="2002" selection-end="2002" vertical-scroll-proportion="0.0">
+        <state line="19" column="26" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1152#1164#0" expanded="true" />
@@ -519,9 +561,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FacebookWeb.java">
+    <entry file="file://$PROJECT_DIR$/GUIDisplay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="35" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.85658914">
+        <state line="2" column="48" selection-start="65" selection-end="65" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Criteria.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="48" selection-start="4709" selection-end="4709" vertical-scroll-proportion="0.73161036">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

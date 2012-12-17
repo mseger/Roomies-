@@ -5,8 +5,6 @@
  */
 
  import java.util.*;
- import java.io.*;
- import java.net.*;
 
  public class Connection{
 
@@ -23,7 +21,6 @@
  		this.userID = userID; // user's Facebook ID, for searching and storage purposes
  		this.profPicURL = "https://graph.facebook.com/" + userID + "/picture"; // URL for public profpic icon
  		this.criteria = new HashMap<String, String>(); // this Connection's criteria, for matching purposes
- 		this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
  		this.pathToUser = new Stack<String>(); // path from the original user to this connection
  	}
 
@@ -50,14 +47,6 @@
 
  	public void setCriteria(HashMap<String, String> newCriteria){
  		criteria = newCriteria;
- 	}
-
- 	public FacebookWeb getFBWeb(){
- 		return fbWeb;
- 	}
-
- 	public void setFBWeb(FacebookWeb newFBWeb){
- 		fbWeb = newFBWeb;
  	}
 
  	public Stack<String> getPathToUser(){
