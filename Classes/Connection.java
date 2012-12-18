@@ -24,7 +24,7 @@
  		this.profPicURL = "https://graph.facebook.com/" + userID + "/picture"; // URL for public profpic icon
  		this.criteria = new HashMap<String, Integer>(); // this Connection's criteria, for matching purposes
         this.criteriaScore = generateNewRandomCriteriaScore();
-        this.immediateConnections = FacebookWeb.fillInputNameWeb(name);
+        this.immediateConnections = new LinkedList<Connection>(); // FacebookWeb.fillInputNameWeb(name);
  		this.pathToUser = new Stack<String>(); // path from the original user to this connection
  	}
 

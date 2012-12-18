@@ -24,7 +24,7 @@
  		this.criteria = populateCriteria(); // mapping from the criteria questions to user-inputted responses
         this.criteriaScore = calculateCriteriaScore();
         this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
- 		this.matches = new MatchList(this, fbWeb); // list of best matches for this User, given their FBWeb
+ 		this.matches = new MatchList(this); // list of best matches for this User, given their FBWeb
  	}
 
  	// getters and setters
@@ -41,9 +41,10 @@
         return criteria.getCriteria();
     }
 
-    public int calculateCriteriaScore(){
-        return (criteria.get("Clean") + criteria.get(1) + criteria.get("Bedtime") + criteria.get("Party") + criteria.get("Company"))/4;
-    }
+   public int calculateCriteriaScore(){
+        //return (criteria.get("Clean") + criteria.get(1) + criteria.get("Bedtime") + criteria.get("Party") + criteria.get("Company"))/4;
+        return 1;
+   }
 
     public int getCriteriaScore(){
         return criteriaScore;

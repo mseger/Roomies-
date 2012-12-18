@@ -17,6 +17,10 @@ public class FacebookWeb{
  		this.myWeb = new HashMap<Integer, LinkedList<Connection>>(); // hashmap from the "level" of connection eg. "level 0" 															 // to the list of Connections at this level
  	}
 
+    public HashMap<Integer, LinkedList<Connection>> getMyWeb(){
+        return myWeb;
+    }
+
 
     public HashMap<Integer, LinkedList<Connection>> populateWeb(){
         // populates the FB Web by filling immediate and extended webs
@@ -102,6 +106,7 @@ public class FacebookWeb{
 
  	public static void main(String[] args){
  		FacebookWeb fbWeb = new FacebookWeb();
+         fbWeb.fillImmediateWeb();
 
         // get temp data for experimental purposes --> I chose to grab my data, write to a text file, re-use for demo (as token expires)
         // I ran this for myself and two FB friends

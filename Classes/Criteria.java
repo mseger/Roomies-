@@ -124,10 +124,9 @@ public class Criteria extends JFrame{
         }
 
         public HashMap<String, Integer> getCriteria(){
-            if(filledOut){
+            if(QAResponses.size()!=0){
                 return QAResponses;
             }else{
-                System.out.println("Survey questions have not been answered yet.");
                 return null;
             }
         }

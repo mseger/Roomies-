@@ -85,6 +85,7 @@ public class GUIDisplay extends JFrame
         userInputPanel.add(partyChoice);
         userInputPanel.add(companyLabel);
         userInputPanel.add(companyChoice);
+        userInputPanel.add(calculateB);
         userInputPanel.add(exitB);
         
         //SPecify handlers for each button and add (register) ActionListeners to each button.
