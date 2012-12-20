@@ -15,10 +15,16 @@
  	private LinkedList<Connection> matchList; 
  	private FacebookWeb fbWeb;
 
+    public MatchList(){  // second constructor in order to avoid a chicken-and-egg issue with instantiating Users
+        this.seed = null;
+        this.fbWeb = null;
+        this.matchList = null;
+    }
+
  	public MatchList(User seed){
  		this.seed = seed; // User we are evaluating all potential candidates against
- 		this.matchList = populateMatchList(); // list of best-fit matches for the seed User
- 		this.fbWeb = seed.getFBWeb(); // this user's Facebook web, which will be used to crawl over and generate best matches
+        this.fbWeb = seed.getFBWeb(); // this user's Facebook web, which will be used to crawl over and generate best matches
+        this.matchList = populateMatchList(); // list of best-fit matches for the seed User
  	}
 
  	// getters and setters
@@ -41,6 +47,7 @@
          for(int i=0; i<fbWeb.getMyWeb().size(); i++){
              LinkedList<Connection> connectionLevel = fbWeb.getMyWeb().get(0);
              for(int j=0; j<connectionLevel.size(); j++){
+                 System.out.println("inside the second for loop");
                  if(goodMatch(seed, connectionLevel.get(j))){
                      matchList.add(connectionLevel.get(j));
                  }

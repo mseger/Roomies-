@@ -13,14 +13,18 @@ public class FacebookWeb{
  	// instance variables
  	private HashMap<Integer, LinkedList<Connection>> myWeb; 
 
- 	public FacebookWeb(){
+ 	public FacebookWeb(){ // so-called "empty" constructor to avoid the chicken and egg problem
  		this.myWeb = new HashMap<Integer, LinkedList<Connection>>(); // hashmap from the "level" of connection eg. "level 0" 															 // to the list of Connections at this level
  	}
+
+    public FacebookWeb(User seed){
+        this.myWeb = new HashMap<Integer, LinkedList<Connection>>();
+        populateWeb();
+    }
 
     public HashMap<Integer, LinkedList<Connection>> getMyWeb(){
         return myWeb;
     }
-
 
     public HashMap<Integer, LinkedList<Connection>> populateWeb(){
         // populates the FB Web by filling immediate and extended webs

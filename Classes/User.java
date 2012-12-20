@@ -16,7 +16,7 @@
  	private HashMap<String, Integer> criteria;
     private int criteriaScore;
  	private FacebookWeb fbWeb;
- 	private MatchList matches; 
+ 	private MatchList matches;
 
  	public User(String name, String userID){
  		this.name = name; // user's name for display purposes
@@ -24,7 +24,7 @@
  		this.criteria = populateCriteria(); // mapping from the criteria questions to user-inputted responses
         this.criteriaScore = calculateCriteriaScore();
         this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
- 		this.matches = new MatchList(this); // list of best matches for this User, given their FBWeb
+        this.matches = new MatchList();
  	}
 
  	// getters and setters
@@ -58,20 +58,26 @@
  		criteria = inputCriteria;
  	}
 
+    public void populateFBWeb(){
+        this.fbWeb = new FacebookWeb(this);
+    }
+
+
+     public void setFBWeb(FacebookWeb inputFBWeb){
+         this.fbWeb = inputFBWeb;
+     }
+
  	public FacebookWeb getFBWeb(){
  		return fbWeb;
  	}
 
- 	public void setFBWeb(FacebookWeb newFBWeb){
- 		fbWeb = newFBWeb;
- 	}
+
+    public void populateMatchList(){
+        this.matches = new MatchList(this);
+    }
 
  	public MatchList getMatches(){
  		return matches;
- 	}
-
- 	public void setMatches(MatchList newMatchList){
- 		matches = newMatchList;
  	}
 
  }
