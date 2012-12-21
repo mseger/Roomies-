@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * Time: 1:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Main {
+public class TestMain {
     public static void main(String[] args){
         // going to initialize + test all aspects of a user
 

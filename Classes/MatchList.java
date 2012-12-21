@@ -64,21 +64,18 @@
             return false;
         }else{
             // see how many mutual friends they have
-            int mutualFriendScore = mutualFriendCheck(seed, inQuestion);
+            //int mutualFriendScore = mutualFriendCheck(seed, inQuestion);
+            return true;
         }
- 		return true;
  	}
 
     public int mutualFriendCheck(User seed, Connection inQuestion){
-        // making the executive decision to forgo mutualFriendCheck in tihs version of the program,
+        // making the executive decision to forgo mutualFriendCheck in this version of the program,
         // due to it being incredibly inefficient with the current data structure - would have to completely
         // refactor to a Hashmap<Hashmap> for the FBWeb if we were to even get linear time for mutual friend checks
         LinkedList<Connection> seedImmediates =   fbWeb.fillImmediateWeb();
         LinkedList<Connection> inQuestionImmediates = FacebookWeb.fillInputNameWeb(inQuestion.getName());
-        for(int i=0; i<seedImmediates.size(); i++){
-        }
-        Random rand = new Random();
-        return rand.nextInt(1000); // for the purposes of demoing
+        return 0;
     }
 
  }
