@@ -227,7 +227,7 @@ public class Criteria extends JFrame{
         newJFrame.validate();
 
         // initialize the CardLayout imageGridPanel, which will switch between TBA matches and generated matches
-        matchPanel_full = populateImageGrid(20, 16, matches);  // larger one: do this for a cooler generated matchList
+        matchPanel_full = populateImageGrid(10, 16, matches);  // larger one: do this for a cooler generated matchList
 
         //put everything into one JPanel, so that we can make this scrollable eventually
         JPanel scrollableContainer = new JPanel();
