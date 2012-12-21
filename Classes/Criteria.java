@@ -14,8 +14,8 @@ import java.util.LinkedList;
 
 public class Criteria extends JFrame{
 
-        private static final int WIDTH = 400;
-        private static final int HEIGHT = 300;
+        private static final int WIDTH = 350;
+        private static final int HEIGHT = 350;
 
         private JLabel cleanLabel, bedtimeLabel, partyLabel, companyLabel;
         private JComboBox cleanChoice, bedtimeChoice, partyChoice, companyChoice;

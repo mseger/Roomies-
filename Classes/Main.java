@@ -33,25 +33,28 @@ public class Main {
         criteria = criteriaGetter.getCriteria();
 
         // populate the FBWeb
-        /*fbWeb = new FacebookWeb();
+        fbWeb = new FacebookWeb();
         fbWeb.fillImmediateWeb();
 
         // test that we're indeed filling the Facebook Web
         LinkedList<Connection> myConnections = fbWeb.getMyWeb().get(0);
         for(int i=0; i<myConnections.size(); i++){
             System.out.println("Connection: " + myConnections.get(i).getName() + ", " + myConnections.get(i).getUID());
-        }*/
+        }
 
         // my MatchList!
         User MA = new User(name, userID);
+        MA.setCriteria(criteria);
         FacebookWeb MAFbWeb = new FacebookWeb(MA);
         MA.setFBWeb(MAFbWeb);
-        MatchList MAMatcher = new MatchList(MA);
-        LinkedList<Connection> matchList = MAMatcher.getMatchList();
+        matches = new MatchList(MA);
+        LinkedList<Connection> matchList = matches.getMatchList();
         System.out.println("The size of the matchList is: " + matchList.size());
-        for(int j=0; j<matchList.size()/2; j++){
+        for(int j=0; j<matchList.size()/20; j++){
             System.out.println("Match number " + j + ": " + matchList.get(j).getName());
         }
+
+        // update the GUI to
 
         /* -------------------------------------------------------- USER = Peter --------------------------------------------------------*/
 

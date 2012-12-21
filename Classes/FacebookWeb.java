@@ -108,19 +108,19 @@ public class FacebookWeb{
     // taking the scraped info from the output text file, analyzing, and inputting into my Facebook web
 
 
- 	public static void main(String[] args){
+ 	/*public static void main(String[] args){
  		FacebookWeb fbWeb = new FacebookWeb();
          fbWeb.fillImmediateWeb();
 
         // get temp data for experimental purposes --> I chose to grab my data, write to a text file, re-use for demo (as token expires)
         // I ran this for myself and two FB friends
-        /*fbWeb.populateWeb(new User("Filip Kaliszan", "filip.kaliszan"), 1);
+        fbWeb.populateWeb(new User("Filip Kaliszan", "filip.kaliszan"), 1);
  		String tempFriendsAccessPt = "https://graph.facebook.com/213843/friends?access_token=AAAAAAITEghMBAPDPNVjOXzZBemqDiIFeGbXaUCwhIFgKPk1a1myx2LGpVw0bJ4F7F8zZB6h0nuJNJSFgHzWxpo6k3VzCXJrN0DdEZBMIXsDcKYlGcaC";
  		String writeToLocation = "FilipFriends.txt";
  		try{
  			fbWeb.runFriendListScrape(tempFriendsAccessPt, writeToLocation);
  		}catch(Exception ex){
  			System.out.println("Failure due to: " + ex);
- 		} */
- 	}
+ 		}
+ 	} */
  }

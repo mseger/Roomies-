@@ -14,7 +14,6 @@
  	private String name;
  	private String userID;
  	private HashMap<String, Integer> criteria;
-    private int criteriaScore;
  	private FacebookWeb fbWeb;
  	private MatchList matches;
 
@@ -22,7 +21,6 @@
  		this.name = name; // user's name for display purposes
  		this.userID = userID; // for Facebook search + storage purposes
  		this.criteria = populateCriteria(); // mapping from the criteria questions to user-inputted responses
-        this.criteriaScore = calculateCriteriaScore();
         this.fbWeb = new FacebookWeb(); // will replace this with "getFacebookWeb()" method
         this.matches = new MatchList();
  	}
@@ -41,14 +39,9 @@
         return criteria.getCriteria();
     }
 
-   public int calculateCriteriaScore(){
-        //return (criteria.get("Clean") + criteria.get(1) + criteria.get("Bedtime") + criteria.get("Party") + criteria.get("Company"))/4;
-        return 1;
+   public double calculateCriteriaScore(){
+        return (criteria.get("Clean")  + criteria.get("Bedtime") + criteria.get("Party") + criteria.get("Company"))/4.0;
    }
-
-    public int getCriteriaScore(){
-        return criteriaScore;
-    }
 
  	public HashMap<String, Integer> getCriteria(){
  		return criteria;

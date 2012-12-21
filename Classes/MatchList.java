@@ -47,7 +47,6 @@
          for(int i=0; i<fbWeb.getMyWeb().size(); i++){
              LinkedList<Connection> connectionLevel = fbWeb.getMyWeb().get(0);
              for(int j=0; j<connectionLevel.size(); j++){
-                 System.out.println("inside the second for loop");
                  if(goodMatch(seed, connectionLevel.get(j))){
                      matchList.add(connectionLevel.get(j));
                  }
@@ -59,7 +58,7 @@
  	public boolean goodMatch(User seed, Connection inQuestion){
  		// helper function to populateMatchList to determine if a given Connection should
  		// or should not be added to the seed User's matchList
-        if((seed.getCriteriaScore()- inQuestion.getCriteriaScore())>2){
+        if((seed.calculateCriteriaScore()- inQuestion.getCriteriaScore())>0.01){
             // more than two whole points apart on the critical comparative metrics
             // probably wouldn't be the happiest roommates
             return false;

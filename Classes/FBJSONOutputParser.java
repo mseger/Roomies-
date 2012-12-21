@@ -25,17 +25,12 @@ public class FBJSONOutputParser {
 
     public LinkedList<Connection> parseFBfriendList(){
         JSONParser parser = new JSONParser();
-
         try {
-
             Object obj = parser.parse(new FileReader(source));
-
             // turn the output glob of text into a JSON object
             JSONObject jsonObject = (JSONObject) obj;
-
             // parse out an array of JSON objects
             JSONArray data = (JSONArray) jsonObject.get("data");
-
             // iterate through each of the JSON objects, make a new Connection, add to a List
             LinkedList<Connection> connectionList = new LinkedList<Connection>();
             for(int i=0; i<data.size(); i++){

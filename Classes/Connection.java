@@ -14,7 +14,7 @@
  	private String userID;
  	private String profPicURL;
  	private HashMap<String, Integer> criteria;
-    private int criteriaScore;
+    private double criteriaScore;
  	private LinkedList<Connection> immediateConnections;
  	private Stack<String> pathToUser;
 
@@ -53,7 +53,7 @@
  		criteria = newCriteria;
  	}
 
-    public int generateNewRandomCriteriaScore(){
+    public double generateNewRandomCriteriaScore(){
         // generates a new, random set of "responses" to the criteria questions, then combines them
         // into one coherent criteria score
         Random r = new Random();
@@ -62,11 +62,11 @@
         int partyScore = r.nextInt(2);
         int companyScore = r.nextInt(5);
 
-        int avg = (cleanScore + bedScore + partyScore + companyScore)/4;
+        double avg = (cleanScore + bedScore + partyScore + companyScore)/4.0;
         return avg;
     }
 
-     public int getCriteriaScore(){
+     public double getCriteriaScore(){
          return criteriaScore;
      }
 
