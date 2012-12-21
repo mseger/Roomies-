@@ -23,18 +23,13 @@ public class Main {
         // populate the criteria
         Criteria criteriaGetter = new Criteria();
         criteriaGetter.grabUserInfo();
-        boolean filledOut = criteriaGetter.filledOut;
-        System.out.println(filledOut);
-        while(!filledOut){
-            filledOut = criteriaGetter.filledOut;
-            if(filledOut)
-                break;
-        }
+
         criteria = criteriaGetter.getCriteria();
 
         // populate the FBWeb
         fbWeb = new FacebookWeb();
         fbWeb.fillImmediateWeb();
+        System.out.println("MADE IT TO THIS PT!!!");
 
         // test that we're indeed filling the Facebook Web
         LinkedList<Connection> myConnections = fbWeb.getMyWeb().get(0);
@@ -54,7 +49,8 @@ public class Main {
             System.out.println("Match number " + j + ": " + matchList.get(j).getName());
         }
 
-        // update the GUI to
+        // now that we have the matches generated, update the GUI with Matches
+        criteriaGetter.refreshWithPopulatedMatchList(matchList);
 
         /* -------------------------------------------------------- USER = Peter --------------------------------------------------------*/
 

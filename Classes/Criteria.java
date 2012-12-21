@@ -1,6 +1,13 @@
 import java.awt.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.event.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -14,10 +21,12 @@ import java.util.LinkedList;
 
 public class Criteria extends JFrame{
 
-        private static final int WIDTH = 350;
-        private static final int HEIGHT = 350;
+        private static Toolkit tk = Toolkit.getDefaultToolkit();
+        private static final int WIDTH = (int)tk.getScreenSize().getWidth();
+        private static final int HEIGHT = (int)tk.getScreenSize().getHeight();
 
-        private JLabel cleanLabel, bedtimeLabel, partyLabel, companyLabel;
+        private JPanel matchPanel_empty, matchPanel_full;
+         private JLabel titleLabel,cleanLabel, bedtimeLabel, partyLabel, companyLabel;
         private JComboBox cleanChoice, bedtimeChoice, partyChoice, companyChoice;
         private JButton calculateB, exitB;
 
@@ -26,6 +35,12 @@ public class Criteria extends JFrame{
 
         public Criteria()
         {
+            // roommate-matcher title bar
+            String imgStr = "roommateMatch_logo.png";
+            ImageIcon image = new ImageIcon(imgStr);
+            titleLabel = new JLabel(" ", image, JLabel.CENTER);
+
+            // criteria user-generated responses
             QAResponses = new HashMap<String, Integer>();
             filledOut = false;
             JPanel userInfo = grabUserInfo();
@@ -37,11 +52,27 @@ public class Criteria extends JFrame{
             Container pane = getContentPane();
             validate();
 
-            //Set the layout.
-            pane.setLayout(new GridLayout());
+            // initialize the CardLayout imageGridPanel, which will switch between TBA matches and generated matches
+            matchPanel_empty = emptyImageGrid(2, 2);
+
+            //put everything into one JPanel, so that we can make this scrollable eventually
+            JPanel scrollableContainer = new JPanel();
+            scrollableContainer.setLayout(new VerticalFlowLayout());   // using a custom layout found online (thanks Internet!)
+
+            // centering the scrollableContainer within the JFrame
+            /*int panelX = (getWidth() - scrollableContainer.getWidth() - getInsets().left - getInsets().right) / 2;
+            int panelY = ((getHeight() - scrollableContainer.getHeight() - getInsets().top - getInsets().bottom) / 2);
+            scrollableContainer.setLocation(panelX, panelY); */
+            scrollableContainer.setBackground(Color.WHITE);
 
             //Add things to the pane in the order you want them to appear (left to right, top to bottom)
-            pane.add(userInfo);
+            scrollableContainer.add(titleLabel);
+            scrollableContainer.add(userInfo);
+            scrollableContainer.add(matchPanel_empty);
+
+            // now add this "master JPanel" to a JScrollPane and then to the Frame
+            JScrollPane jsp = new JScrollPane(scrollableContainer, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            pane.add(jsp);
 
             //Other JFrame stuff.
             setSize(WIDTH, HEIGHT);
@@ -52,6 +83,7 @@ public class Criteria extends JFrame{
         // displays, takes in, and stores all user-inputted preference data
         public JPanel grabUserInfo(){
             JPanel userInputPanel = new JPanel();
+            userInputPanel.setBackground(Color.WHITE);
 
             //Instantiate the labels:
             cleanLabel = new JLabel("I am... ", SwingConstants.RIGHT);
@@ -101,6 +133,114 @@ public class Criteria extends JFrame{
             return userInputPanel;
         }
 
+    public JPanel emptyImageGrid(int width, int length){
+        JPanel emptyGridPanel = new JPanel();
+        JButton[][] grid; //names the grid of buttons
+        JLabel[][] rail;
+
+        emptyGridPanel.setLayout(new GridLayout(width, length));
+        rail = new JLabel[width][length];
+        for(int y=0; y<length; y++){
+            for(int x=0; x<width; x++){
+                // get the image icon, scale down, then reset the icon
+                ImageIcon icon = createImageIcon("unknownMatch.jpg", "");
+                /*Image img = icon.getImage();
+                Image newImg = img.getScaledInstance(600, 600, Image.SCALE_SMOOTH);
+                icon = new ImageIcon(newImg); */
+                JLabel toAdd = new JLabel(icon);
+                toAdd.setBorder(new MatteBorder(20, 20, 20, 20, Color.GRAY));
+                rail[x][y] = toAdd;
+                emptyGridPanel.add(rail[x][y]);
+            }
+        }
+        return emptyGridPanel;
+    }
+
+    public JPanel populateImageGrid(int width, int length, LinkedList<Connection> matches){
+        JButton[][] grid; //names the grid of buttons
+        JLabel[][] rail;
+
+        matchPanel_full = new JPanel();
+        matchPanel_full.setLayout(new GridLayout(width, length));
+        rail = new JLabel[width][length];
+
+        int k= 0; // counter for which index of the matches LinkedList we're on
+        for(int y=0; y<length; y++){
+            for(int x=0; x<width; x++){
+                System.out.println("Grabbing image from: " + matches.get(k).getProfPicURL());
+                ImageIcon matchProfPic = createImageIconFromFB(matches.get(k).getProfPicURL());
+                JLabel toAdd = new JLabel(matchProfPic);
+                toAdd.setBorder(new MatteBorder(20, 20, 20, 20, Color.GRAY));
+                rail[x][y] = toAdd;
+                matchPanel_full.add(rail[x][y]);
+                k++;
+            }
+        }
+
+        return matchPanel_full;
+    }
+
+    public ImageIcon createImageIconFromFB(String address){
+        Image matchImage = null;
+        ImageIcon matchIcon = null;
+        try{
+            URL url = new URL(address);
+            matchImage = ImageIO.read(url);
+            matchIcon = new ImageIcon(matchImage);
+        } catch (IOException e) {
+            System.out.println("Exception downloading image: " + e);
+        }
+        return matchIcon;
+    }
+
+    public static ImageIcon createImageIcon(String path,String description) {
+        java.net.URL imgURL = ImageGrid.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL, description);
+        } else {
+
+            return null;
+        }
+    }
+
+    public void refreshWithPopulatedMatchList(LinkedList<Connection> matches){
+        // roommate-matcher title bar
+        JFrame newJFrame = new JFrame();
+
+        String imgStr = "roommateMatch_logo.png";
+        ImageIcon image = new ImageIcon(imgStr);
+        titleLabel = new JLabel(" ", image, JLabel.CENTER);
+
+        // criteria user-generated responses
+
+        //Set the window's title.
+        newJFrame.setTitle("Roommate Match");
+
+        //Get the content pane (CP).
+        Container pane = newJFrame.getContentPane();
+        newJFrame.validate();
+
+        // initialize the CardLayout imageGridPanel, which will switch between TBA matches and generated matches
+        matchPanel_full = populateImageGrid(20, 16, matches);
+
+        //put everything into one JPanel, so that we can make this scrollable eventually
+        JPanel scrollableContainer = new JPanel();
+        scrollableContainer.setLayout(new VerticalFlowLayout());   // using a custom layout found online (thanks Internet!)
+        scrollableContainer.setBackground(Color.WHITE);
+
+        //Add things to the pane in the order you want them to appear (left to right, top to bottom)
+        scrollableContainer.add(titleLabel);
+        scrollableContainer.add(matchPanel_full);
+
+        // now add this "master JPanel" to a JScrollPane and then to the Frame
+        JScrollPane jsp = new JScrollPane(scrollableContainer, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        pane.add(jsp);
+
+        //Other JFrame stuff.
+        newJFrame.setSize(WIDTH, HEIGHT);
+        newJFrame.setVisible(true);
+        newJFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
 
         private class CalculateButtonHandler implements ActionListener {
             public void actionPerformed(ActionEvent e){
@@ -119,7 +259,37 @@ public class Criteria extends JFrame{
                 QAResponses.put("Party", partyPref);
                 QAResponses.put("Company", company);
 
-                filledOut = true;
+                // user has: name, User ID, criteria
+                String name = "Margaret-Ann";
+                String userID = "margaretann.seger";
+                HashMap<String, Integer> criteria = QAResponses;
+                FacebookWeb fbWeb;
+                MatchList matches;
+
+                // populate the FBWeb
+                fbWeb = new FacebookWeb();
+                fbWeb.fillImmediateWeb();
+
+                // test that we're indeed filling the Facebook Web
+                LinkedList<Connection> myConnections = fbWeb.getMyWeb().get(0);
+                /*for(int i=0; i<myConnections.size(); i++){
+                    System.out.println("Connection: " + myConnections.get(i).getName() + ", " + myConnections.get(i).getUID());
+                }*/
+
+                // my MatchList!
+                User MA = new User(name, userID);
+                MA.setCriteria(criteria);
+                FacebookWeb MAFbWeb = new FacebookWeb(MA);
+                MA.setFBWeb(MAFbWeb);
+                matches = new MatchList(MA);
+                LinkedList<Connection> matchList = matches.getMatchList();
+                System.out.println("The size of the matchList is: " + matchList.size());
+                /*for(int j=0; j<matchList.size()/20; j++){
+                    System.out.println("Match number " + j + ": " + matchList.get(j).getName());
+                }*/
+
+                // now that we have the matches generated, update the GUI with Matches
+                refreshWithPopulatedMatchList(matchList);
             }
         }
 
